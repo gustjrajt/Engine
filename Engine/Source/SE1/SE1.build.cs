@@ -25,7 +25,7 @@ public class SE1 : CommonProject
 
         conf.AddPublicDependency<Core>(target);
 
-        // conf.AddPublicDependency<Launch>(target);
+        conf.AddPublicDependency<Launch>(target);
         // if (target.LaunchType == ELaunchType.Editor || target.LaunchType == ELaunchType.Client)
         // {
         // conf.AddPublicDependency<Slate>(target);

@@ -10,3 +10,4 @@
 
 Build Guide
 - Run Setup.bat
+- Run GenerateSolution.bat
