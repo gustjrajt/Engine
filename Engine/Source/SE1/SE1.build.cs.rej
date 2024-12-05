@@ -1,0 +1,23 @@
+diff a/Engine/Source/SE1/SE1.build.cs b/Engine/Source/SE1/SE1.build.cs	(rejected hunks)
+@@ -20,15 +20,17 @@
+             // conf.Options.Add(Options.Vc.Linker.SubSystem.Windows);
+         // }
+ 
+-        conf.SolutionFolder = "Engine";
++        //conf.SolutionFolder = "Engine";
+         conf.Output = Configuration.OutputType.Exe;
+ 
++        conf.AddPublicDependency<Core>(target);
++
+         // conf.AddPublicDependency<Launch>(target);
+         // if (target.LaunchType == ELaunchType.Editor || target.LaunchType == ELaunchType.Client)
+         // {
+-            // conf.AddPublicDependency<Slate>(target);
+-            // conf.AddPublicDependency<Renderer>(target);
+-            // conf.AddPublicDependency<D3D11RHI>(target);
++        // conf.AddPublicDependency<Slate>(target);
++        // conf.AddPublicDependency<Renderer>(target);
++        // conf.AddPublicDependency<D3D11RHI>(target);
+         // }
+     }
+ }
