@@ -4,8 +4,9 @@
 
 IMPLEMENT_MODULE(FDefaultModuleImpl, SE1);
 
+extern int32 LAUNCH_API GuardedMain(const TCHAR* CmdLine);
+
 int main()
 {
-	std::cout << "Hello World!" << std::endl;
-	return 0;
+	return GuardedMain(nullptr);
 }
