@@ -7,7 +7,7 @@ bool GIsRequestingExit = false; /* Indicates that MainLoop() should be exited at
 
 //CORE_API map<UClass*, vector<engine_weak_ptr<UObject>>> ObjectMap;
 //
-bool IsEngineExitRequested()
+bool CORE_API IsEngineExitRequested()
 {
 	return GIsRequestingExit;
 }
