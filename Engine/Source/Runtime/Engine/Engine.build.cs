@@ -5,17 +5,17 @@ using System.IO;
 using Sharpmake;
 
 [Generate]
-public class Launch : CommonProject
+public class Engine : CommonProject
 {
-    public Launch() { }
+    public Engine() { }
 
     public override void ConfigureAll(Configuration conf, EngineTarget target)
     {
         base.ConfigureAll(conf, target);
 
         
-        
-        conf.AddPublicDependency<Engine>(target);
+        conf.AddPublicDependency<Core>(target);         // Launch모듈에 Core 모듈 추가(include PATH)
+        //conf.AddPublicDependency<Engine>(target);
         //if (target.LaunchType == ELaunchType.Editor)
         //{
         //    conf.AddPublicDependency<RHI>(target);
