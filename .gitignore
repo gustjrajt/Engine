@@ -370,5 +370,6 @@ FodyWeavers.xsd
 
 Binaries
 Intermediate
+Engine/Source/Programs/vcpkg
 Engine.sln
 SE.sln
