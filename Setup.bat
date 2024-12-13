@@ -24,13 +24,13 @@ if '%errorlevel%' NEQ '0' (goto UACPrompt) else ( goto gotAdmin )
 echo [Build Sharpmake]
 dotnet build --configuration Release .\Engine\Source\Programs\Sharpmake\Sharpmake.Application\Sharpmake.Application.csproj
 
-call "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat"
-
 echo [vcpkg task]
-if not exist "Engine\Source\Programs\vcpkg" mkdir "Engine\Source\Programs\vcpkg"
-cd Engine\Source\Programs\vcpkg
-vcpkg new --application
-vcpkg add port boost
-vcpkg install
+cd Engine\Source\Programs\
+if not exist "Engine\Source\Programs\vcpkg" (
+	git clone https://github.com/microsoft/vcpkg
+	call .\vcpkg\bootstrap-vcpkg.bat
+)
+.\vcpkg\vcpkg install boost:x64-windows
+.\vcpkg\vcpkg integrate install
 
 pause

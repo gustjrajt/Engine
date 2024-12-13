@@ -20,5 +20,8 @@ set SharpMakeSolutionDir=%cd%
 IF NOT "%~4"=="" set SharpMakeSolutionDir="%4"
 echo SharpMakeSolutionDir은 %SharpMakeSolutionDir%
 
+set SE_VCPKG_ROOT=%EngineDir%\Engine\Source\Programs\vcpkg
+echo %SE_VCPKG_ROOT%
+
 "%EngineDir%\Engine\Source\Programs\Sharpmake\Sharpmake.Application\bin\Release\net6.0\Sharpmake.Application.exe" /sources(@'%TargetCS%') /verbose
 "%EngineDir%\Engine\Source\Programs\Sharpmake\Sharpmake.Application\bin\Release\net6.0\Sharpmake.Application.exe" /sources(@'%FrontendTargetCS%') /verbose

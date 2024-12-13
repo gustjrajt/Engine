@@ -14,7 +14,6 @@ public class EngineSolution : Solution
     {
         IsFileNameToLower = false;
         Name = "Engine";
-
         AddTargets(new EngineTarget(
             ELaunchType.Editor | ELaunchType.Client | ELaunchType.Server,
             Platform.win64,
