@@ -1,17 +1,17 @@
 #include "UObject/UObjectGlobals.h"
-//#include "UObject/Class.h"
-//#include "UObject/UObject.h"
+#include "UObject/Class.h"
+#include "UObject/Object.h"
 //#include "Logging/Logger.h"
-//
-bool GIsRequestingExit = false; /* Indicates that MainLoop() should be exited at the end of the current iteration */
 
-//CORE_API map<UClass*, vector<engine_weak_ptr<UObject>>> ObjectMap;
-//
+bool					GIsRequestingExit = false;
+
 bool CORE_API IsEngineExitRequested()
 {
 	return GIsRequestingExit;
 }
-//
+
+//CORE_API map<UClass*, vector<engine_weak_ptr<UObject>>> ObjectMap;
+
 //void CORE_API RequestEngineExit(const FString ReasonString)
 //{
 //	E_LOG(Trace, TEXT("{}"), ReasonString.c_str());
@@ -23,7 +23,7 @@ FStaticConstructObjectParameters::FStaticConstructObjectParameters(UClass* InCla
 {
 	if (!Class)
 	{
-		/*E_LOG(Error, TEXT("Class is nullptr"))*/
+		//E_LOG(Error, TEXT("Class is nullptr"))
 	}
 }
 
@@ -40,7 +40,7 @@ FObjectInitializer::FObjectInitializer(shared_ptr<UObject>& InObj, const FStatic
 		bShouldInitializePropsFromArchetype = true;
 	}
 }
-//
+
 FObjectInitializer::~FObjectInitializer()
 {
 	//PostConstructInit();
@@ -102,31 +102,31 @@ FObjectInitializer::~FObjectInitializer()
 //	SharedObj->PostInitProperties();
 //}
 //
-//CORE_API shared_ptr<UObject> StaticConstructObject_Internal(FStaticConstructObjectParameters& Params)
-//{
-//	UClass* InClass = Params.Class;
-//	FString& InName = Params.Name;
-//
-//	if (InName == NAME_NONE)
-//	{
-//		static map<FString, int64> NameCountMap;
-//		FString ClassName = InClass->ClassName;
-//		int64& NewIndex = NameCountMap[ClassName];
-//
-//		InName = ClassName + TEXT("_") + to_wstring(NewIndex);
-//
-//		++NewIndex;
-//	}
-//
-//	shared_ptr<UObject> Result = NULL;
-//
-//	InClass->ClassConstructor(FObjectInitializer(Result, Params));
-//
-//	auto& ObjectVector = ObjectMap[InClass];
-//	ObjectVector.emplace_back(Result);
-//
-//	return Result;
-//}
+CORE_API shared_ptr<UObject> StaticConstructObject_Internal(FStaticConstructObjectParameters& Params)
+{
+	UClass* InClass = Params.Class;
+	FString& InName = Params.Name;
+
+	if (InName == NAME_NONE)
+	{
+		static map<FString, int64> NameCountMap;
+		FString ClassName = InClass->ClassName;
+		int64& NewIndex = NameCountMap[ClassName];
+
+		InName = ClassName + TEXT("_") + to_wstring(NewIndex);
+
+		++NewIndex;
+	}
+
+	shared_ptr<UObject> Result = NULL;
+
+	InClass->ClassConstructor(FObjectInitializer(Result, Params));
+
+	/*auto& ObjectVector = ObjectMap[InClass];
+	ObjectVector.emplace_back(Result);*/
+
+	return Result;
+}
 
 CORE_API string to_string(const FString& InString)
 {

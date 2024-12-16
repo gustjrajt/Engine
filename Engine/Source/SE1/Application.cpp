@@ -9,4 +9,4 @@ extern int32 LAUNCH_API GuardedMain(const TCHAR* CmdLine);
 int main()
 {
 	return GuardedMain(nullptr);
-}
+} 
