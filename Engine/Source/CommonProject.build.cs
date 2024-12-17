@@ -91,11 +91,11 @@ public abstract class CommonProject : Project
                 conf.IncludePaths.Add(@"[project.SourceRootPath]\Public");
             }
         }
-        
-        //if (target.LaunchType == ELaunchType.Editor)
-        //{
-        //    //conf.ForceSymbolReferences.Add("IMPLEMENT_MODULE_" + conf.Project.Name);
-        //}
+
+        if (target.LaunchType == ELaunchType.Editor)
+        {
+            //conf.ForceSymbolReferences.Add("IMPLEMENT_MODULE_" + conf.Project.Name);
+        }
 
         // Runtime Library
         {
@@ -114,8 +114,8 @@ public abstract class CommonProject : Project
             //        conf.Options.Add(Options.Vc.Compiler.RuntimeLibrary.MultiThreaded);
             //}
         }
-        ///string EngineDir = Utils.GetEngineDir();
-        ///conf.EventPreBuild.Add(@"cmd /c """"" + EngineDir + @"\Engine\Source\Programs\HeaderParser\HeaderParser.bat"" ""$(SolutionDir)"" [project.Name] ""[project.SourceRootPath]"" " + @""""+ EngineDir + @"""""");
+        string EngineDir = Utils.GetEngineDir();
+        conf.EventPreBuild.Add(@"cmd /c """"" + EngineDir + @"\Engine\Source\Programs\HeaderParser\HeaderParser.bat"" ""$(SolutionDir)"" [project.Name] ""[project.SourceRootPath]"" " + @"""" + EngineDir + @"""""");
 
         conf.CustomProperties.Add("CustomOptimizationProperty", $"Custom-{target.Optimization}");
     }
