@@ -18,5 +18,4 @@ int32 FEngineLoop::Init()
 #include <iostream>
 void FEngineLoop::Tick()
 {
-	cout << "Launching Success!! \n";
 }

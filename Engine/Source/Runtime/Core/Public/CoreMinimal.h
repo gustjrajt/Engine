@@ -3,3 +3,4 @@
 #include "CoreGlobals.h"
 #include "UObject/Object.h"
 #include "UObject/class.h"
+#include "Logging/Logger.h"
