@@ -125,8 +125,6 @@ FLogger::FLogger()
 		logging::core::get()->add_sink(ConsoleSink);
 	}
 	logging::add_common_attributes();
-
-	LogF(ELogVerbosity::Log, TEXT("Sample"));
 }
 
 void FLogger::LogF(ELogVerbosity InLogVerbosity, FStringView InMessage)

@@ -2,9 +2,13 @@
 #include "UObject/UObjectMacros.h"
 #include "HAL/Platform.h"
 #include <string>
+#include "Misc/CoreMiscDefines.h"
 using FStringView = std::wstring_view;
 using FString = std::wstring;
-
+enum class EName : uint32
+{
+	MaxHardcodedNameIndex,
+};
 /**
  * Public name, available to the world.  Names are stored as a combination of
  * an index into a table of unique strings and an instance number.
@@ -13,7 +17,8 @@ using FString = std::wstring;
 class CORE_API FName
 {
 public:
-	FName() {}
+	FName(ENoInit);
+	FName(EName InHashCode);
 	FName(FStringView InString);
 	FName(const WIDECHAR* InString);
 
@@ -32,9 +37,10 @@ public:
 	void ToString(FString& Out) const;
 
 	bool operator<(const FName& Other) const { return HashCode < Other.HashCode; }
+	bool operator==(const FName& Other) const { return HashCode == Other.HashCode; }
 
 private:
-	uint64 HashCode = 0;
+	uint64 HashCode;
 };
 
-const static inline FName NAME_None;
+const static inline FName NAME_None= FName(FName(0));

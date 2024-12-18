@@ -9,7 +9,16 @@ unordered_map<uint64, FString>& GetNamePool()
 	return NamePool;
 }
 
+#pragma warning(disable:26495)
+FName::FName(ENoInit)
+{
+}
+#pragma warning(default:26495)
 
+FName::FName(EName InHashCode)
+	: HashCode((uint64)InHashCode)
+{
+}
 
 FName::FName(FStringView InString)
 {

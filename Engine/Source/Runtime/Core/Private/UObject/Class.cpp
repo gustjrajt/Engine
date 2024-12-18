@@ -22,7 +22,7 @@ UObject* UClass::CreateDefaultObject()
 
 	FStaticConstructObjectParameters StaticConstructObjectParameters(this);
 	StaticConstructObjectParameters.SetFlags = EObjectFlags::RF_ClassDefaultObject;
-	StaticConstructObjectParameters.Name = FString(ClassName);
+	StaticConstructObjectParameters.Name = FName(ClassName);
 	ClassConstructor(FObjectInitializer(ClassDefaultObject, StaticConstructObjectParameters));
 
 	return ClassDefaultObject.get();
