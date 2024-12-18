@@ -1,4 +1,4 @@
-#include "Class.h"
+#include "UObject/Class.h"
 #include "UObject/UObjectArray.h"
 
 CORE_API map<FString, UClass*> ClassMap;
@@ -15,6 +15,22 @@ UClass::UClass(FString InClassName, const type_info& InClassTypeInfo, const uint
 	{
 		SuperClass = InSuperClassFunction();
 	}
+}
+UObject* UClass::CreateDefaultObject()
+{
+	_ASSERT(!ClassDefaultObject);
+
+	FStaticConstructObjectParameters StaticConstructObjectParameters(this);
+	StaticConstructObjectParameters.SetFlags = EObjectFlags::RF_ClassDefaultObject;
+	StaticConstructObjectParameters.Name = FString(ClassName);
+	ClassConstructor(FObjectInitializer(ClassDefaultObject, StaticConstructObjectParameters));
+
+	return ClassDefaultObject.get();
+}
+
+void UClass::InternalCreateDefaultObjectWrapper() const
+{
+	const_cast<UClass*>(this)->CreateDefaultObject();
 }
 
 UClass* GetPrivateStaticClassBody(FString InClassName,

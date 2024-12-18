@@ -6,6 +6,10 @@ shared_ptr<UEngine> GEngine;
 
 int32 FEngineLoop::PreInit(const TCHAR* CmdLine)
 {
+	for (auto It : ClassMap)
+	{
+		It.second->GetDefaultObject();
+	}
 	return 0;
 }
 
