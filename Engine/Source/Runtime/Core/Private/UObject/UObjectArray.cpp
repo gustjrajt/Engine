@@ -28,7 +28,9 @@ private:
 
 void FUObjectArray::Create(const type_info& InTypeInfo, const uint64 InSizePerOne)
 {
-	MemoryPools[InTypeInfo.hash_code()] = new FMemoryPool(InTypeInfo.name(), InSizePerOne);
+	if (!MemoryPools[InTypeInfo.hash_code()]) {
+		MemoryPools[InTypeInfo.hash_code()] = new FMemoryPool(InTypeInfo.name(), InSizePerOne);
+	}
 }
 
 void* FUObjectArray::Malloc(const type_info& InTypeInfo)

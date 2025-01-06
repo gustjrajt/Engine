@@ -1,7 +1,11 @@
 #include "UObject/Class.h"
 #include "UObject/UObjectArray.h"
 
-CORE_API map<FString, UClass*> ClassMap;
+CORE_API map<FString, UClass*>& GetClassMap()
+{
+	static map<FString, UClass*> ClassMap;
+	return ClassMap;
+}
 
 UClass::UClass(FString InClassName, const type_info& InClassTypeInfo, const uint64 InClassSize,
 	ClassConstructorType InClassConstructorType, StaticClassFunctionType InSuperClassFunction)
@@ -63,7 +67,7 @@ UClass* GetPrivateStaticClassBody(FString InClassName,
 			InSuperClassFn
 		);
 	//생성된 UClass정보를 Map에 저장
-	ClassMap.emplace(InClassName, ReturnClass);
+	GetClassMap().emplace(InClassName, ReturnClass);
 
 	return ReturnClass;
 }
